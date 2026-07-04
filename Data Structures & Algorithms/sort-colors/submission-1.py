@@ -3,14 +3,17 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        zero = 0
+        zero = one = 0
+        two = len(nums) - 1
 
-        for i in range(len(nums)):
-            if nums[i] == 0:
-                nums[i], nums[zero] = nums[zero], nums[i]
-                zero += 1
 
-        for i in range(zero, len(nums)):
-            if nums[i] == 1:
-                nums[i], nums[zero] = nums[zero], nums[i]
+        while one <= two:
+            if nums[one] == 0:
+                nums[zero], nums[one] = nums[one], nums[zero]
                 zero += 1
+                one += 1
+            elif nums[one] == 1:
+                one += 1
+            else:
+                nums[one], nums[two] = nums[two], nums[one]
+                two -= 1
